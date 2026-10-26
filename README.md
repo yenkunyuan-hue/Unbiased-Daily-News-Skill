@@ -37,17 +37,20 @@ A daily Chinese-language tech newspaper: at least 8 stories picked by impact plu
 
 ```
 tech-morning-paper/
-├── SKILL.md              # 技能说明（给 Claude 的完整规则）· Skill instructions for Claude
-├── README.md             # 本文件 · This file
-├── template.html         # 报纸页面模板（三套天气版式）· Page template with three weather looks
-├── build.py              # 把当期数据注入模板，生成 newspaper.html · Builds newspaper.html from an edition
-├── config.json           # 天气地点与版式规则 · Weather location and look rule
-└── example-edition.json  # 一期完整数据样例 · A complete sample edition
+├── SKILL.md                  # 技能说明（给 Claude 的完整规则）· Skill instructions for Claude
+├── README.md                 # 本文件 · This file
+└── tech-morning-paper.zip    # 完整包，含以下全部文件 · Full package, contains all files below
+    ├── SKILL.md              # 同上 · Same as above
+    ├── README.md             # 同上 · Same as above
+    ├── template.html         # 报纸页面模板（三套天气版式）· Page template with three weather looks
+    ├── build.py              # 把当期数据注入模板，生成 newspaper.html · Builds newspaper.html from an edition
+    ├── config.json           # 天气地点与版式规则 · Weather location and look rule
+    └── example-edition.json  # 一期完整数据样例 · A complete sample edition
 ```
 
-运行时的工作目录是 `/mnt/project-files/tech-daily/`，每期数据存在 `editions/<YYYY-MM-DD>.json`。
+运行时的工作目录是 `/mnt/project-files/tech-daily/`，每期数据存在 `editions/<YYYY-MM-DD>.json`。其他提到的文件都在zip包中
 
-At run time the working folder is `/mnt/project-files/tech-daily/`, and each issue is saved as `editions/<YYYY-MM-DD>.json`.
+At run time the working folder is `/mnt/project-files/tech-daily/`, and each issue is saved as `editions/<YYYY-MM-DD>.json`. Other files are inside of the zip file I have uploaded. 
 
 ## 工作流程 · How it works
 
