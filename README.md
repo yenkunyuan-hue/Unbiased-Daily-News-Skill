@@ -36,12 +36,10 @@ A daily Chinese-language tech newspaper: at least 8 stories picked by impact plu
 ## 文件结构 · Files
 
 ```
-tech-morning-paper/
-├── SKILL.md                  # 技能说明（给 Claude 的完整规则）· Skill instructions for Claude
+tech-morning-paper/                
 ├── README.md                 # 本文件 · This file
 └── tech-morning-paper.zip    # 完整包，含以下全部文件 · Full package, contains all files below
-    ├── SKILL.md              # 同上 · Same as above
-    ├── README.md             # 同上 · Same as above
+    ├── SKILL.md              # 技能说明（给 Claude 的完整规则）· Skill instructions for Claude
     ├── template.html         # 报纸页面模板（三套天气版式）· Page template with three weather looks
     ├── build.py              # 把当期数据注入模板，生成 newspaper.html · Builds newspaper.html from an edition
     ├── config.json           # 天气地点与版式规则 · Weather location and look rule
@@ -94,16 +92,6 @@ At run time the working folder is `/mnt/project-files/tech-daily/`, and each iss
 
 To change a rule, just tell Claude; it updates the memory, files and scheduled task together.
 
-## 手动运行 · Manual run
-
-```bash
-cd /mnt/project-files/tech-daily
-python3 build.py editions/2026-10-26.json   # 生成 newspaper.html · writes newspaper.html
-```
-
-之后用 Artifact 发布 `newspaper.html`（同一路径，保持链接不变）。
-
-Then publish `newspaper.html` with the Artifact tool (same path, so the link stays the same).
 
 ## 数据格式 · Edition format
 
