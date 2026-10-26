@@ -68,10 +68,9 @@ At run time the working folder is `/mnt/project-files/tech-daily/`, and each iss
 | 项目 · Item | 设置 · Setting |
 |---|---|
 | 触发方式 · Trigger | 定时任务 · Scheduled task |
-| 时间 · Time | 每天丹麦时间 8:52 · Daily at 8:52 Denmark time (`CRON_TZ=Europe/Copenhagen 52 8 * * *`) |
+| 时间 · Time | **每天丹麦时间 `8:52` · Daily at `8:52` Denmark time** (`CRON_TZ=Europe/Copenhagen 52 8 * * *`) |
 | 报纸链接 · Paper link | 固定不变，每天更新 · Same link, updated daily: https://claude.ai/artifact/EpfeyC65HdPDJJDHYQiN12 |
 | 通知 · Notification | 在项目线程发消息（天气和版式、头条三条、冷知识标题、链接），Claude App 推送 · A thread message (weather and look, top 3 headlines, fun-fact title, link) that triggers a Claude app notification |
-| 需要开着程序吗 · Must the app stay open? | 不需要，在云端运行 · No, it runs in the cloud |
 
 ## 可配置项 · Configuration
 
@@ -122,12 +121,25 @@ Then publish `newspaper.html` with the Artifact tool (same path, so the link sta
   "fact": { "title": "冷知识标题", "text": "内容", "source": "来源", "url": "https://…" }
 }
 ```
-
 完整样例见 `example-edition.json`。· See `example-edition.json` for a full example.
 
-## 已知限制 · Known limits
+## 内容限制 · Content limits
+- 内容在新闻之外加入了学术内容，关注 AI 相关期刊和顶级会议的最新发布，例如会议精选的 Highlight、Oral 和最佳论文会增加额外权重。严格来说，这部分并不属于新闻，而是反映最新科技发展的研究方向。论文条目会标注“论文”类别和发表状态（会议、预印本等），与普通新闻区分开，但仍和其他条目一起按影响力排序。
 
+- The content adds academic part alongside the news, following the latest releases from AI journals and top conferences, such as conference-selected highlights, orals and best papers(extra weights are added). Strictly, this section is not news; it reflects the latest research directions in AI technology. Paper entries are labelled with a “paper” category and their publication status (conference, preprint and so on) to set them apart from regular news, while still being ranked by impact alongside the other stories.
+
+- 影响力评分是编辑判断，不是量化指标。
+- Impact scores are editorial judgement, not a measured metric.
+
+- 本技能刻意采用多语言来源，不局限于某一种语言的媒体。由于报纸的默认输出语言是中文，为了避免信息只来自中文互联网，这里设置了一条硬性限制：简体中文（普通话）来源在每期全部来源中的占比必须低于 50%。英文及其他语言的来源不受此限制。每条新闻底部和右侧栏都会单独列出中文来源的数量和比例，便于核对。
+
+- This skill deliberately draws on sources in multiple languages rather than any single language's media. Because the paper's default output language is Chinese, a hard limit keeps coverage from leaning on the Chinese-language internet: Simplified Chinese (Mandarin) sources must stay below 50% of all sources in each issue. English and other-language sources are not capped. The number and share of Chinese sources are listed separately under every story and in the side column, so the limit is easy to check.
+
+- 本技能对每条新闻都强制设置了正反两面的讨论：无论支持一方还是质疑一方的声音有多大，读者总能同时看到正面观点和负面或质疑的观点，而且每个观点都单独标明来源。每条新闻底部还会用小图显示正反观点各有几条。我们认为这一点是本报保持客观、不偏向任何一方的基础。
+
+- This skill requires every story to present both sides. However loud the supporting or the critical voices are, readers always see positive views alongside negative or skeptical ones, and each view cites its own source. A small chart under every story shows how many views sit on each side. We see this as the foundation of the paper’s claim to be unbiased.
+
+## 外在限制 · External limits
 - 天气只能通过 WebFetch 从 yr.no 获取；命令行访问外网会被代理拦截。· Weather comes only from yr.no via WebFetch; command-line network access is blocked by the proxy.
-- 影响力评分是编辑判断，不是量化指标。· Impact scores are editorial judgement, not a measured metric.
-- 页面只统计英文和中文来源；其他语言的来源会算作英文。· The page counts only English and Chinese sources; other languages are counted as English.
+
 - 新闻条数为偶数时，两栏布局最后一行只有一条。· With an even number of stories, the last row of the two-column layout holds a single story.
